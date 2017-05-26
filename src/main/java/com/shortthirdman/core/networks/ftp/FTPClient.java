@@ -23,7 +23,15 @@ import org.apache.commons.net.io.CopyStreamEvent;
 import org.apache.commons.net.io.CopyStreamListener;
 import org.apache.commons.net.util.TrustManagerUtils;
 
-public final class FTPClientExample {
+/**
+ * This is an example program demonstrating how to use the FTPClient class.
+ * This program connects to an FTP server and retrieves the specified
+ * file.  If the -s flag is used, it stores the local file at the FTP server.
+ * Just so you can see what's happening, all reply strings are printed.
+ * If the -b flag is used, a binary transfer is assumed (default is ASCII).
+ * See below for further options.
+ */
+public final class FTPClient {
 
     public static final String USAGE =
         "Expected Parameters: [options] <hostname> <username> <password> [<remote file> [<local file>]]\n" +
@@ -83,6 +91,7 @@ public final class FTPClientExample {
         String serverType = null;
         String defaultDateFormat = null;
         String recentDateFormat = null;
+
 
         int base = 0;
         for (base = 0; base < args.length; base++) {
@@ -195,8 +204,7 @@ public final class FTPClientExample {
         if (username != null) {
             minParams -= 2;
         }
-        if (remain < minParams) // server, user, pass, remote, local [protocol]
-        {
+        if (remain < minParams) { // server, user, pass, remote, local [protocol]
             if (args.length > 0) {
                 System.err.println("Actual Parameters: " + Arrays.toString(args));
             }
@@ -207,7 +215,7 @@ public final class FTPClientExample {
         String server = args[base++];
         int port = 0;
         String parts[] = server.split(":");
-        if (parts.length == 2){
+        if (parts.length == 2) {
             server=parts[0];
             port=Integer.parseInt(parts[1]);
         }
@@ -300,6 +308,8 @@ public final class FTPClientExample {
             }
             System.out.println("Connected to " + server + " on " + (port>0 ? port : ftp.getDefaultPort()));
 
+            // After connection attempt, you should check the reply code to verify
+            // success.
             reply = ftp.getReplyCode();
 
             if (!FTPReply.isPositiveCompletion(reply)) {
@@ -307,8 +317,7 @@ public final class FTPClientExample {
                 System.err.println("FTP server refused connection.");
                 System.exit(1);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             if (ftp.isConnected()) {
                 try {
                     ftp.disconnect();
@@ -334,9 +343,13 @@ __main:
             if (binaryTransfer) {
                 ftp.setFileType(FTP.BINARY_FILE_TYPE);
             } else {
+                // in theory this should not be necessary as servers should default to ASCII
+                // but they don't all do so - see NET-500
                 ftp.setFileType(FTP.ASCII_FILE_TYPE);
             }
 
+            // Use passive mode as default because most of us are
+            // behind firewalls these days.
             if (localActive) {
                 ftp.enterLocalActiveMode();
             } else {
@@ -353,7 +366,9 @@ __main:
                 ftp.storeFile(remote, input);
 
                 input.close();
-            } else if (listFiles || mlsd || mdtm || mlst || listNames) {
+            }
+            // Allow multiple list types for single invocation
+            else if (listFiles || mlsd || mdtm || mlst || listNames) {
                 if (mlsd) {
                     for (FTPFile f : ftp.mlistDir(remote)) {
                         System.out.println(f.getRawListing());
@@ -362,8 +377,12 @@ __main:
                 }
                 if (mdtm) {
                     FTPFile f = ftp.mdtmFile(remote);
-                    System.out.println(f.getRawListing());
-                    System.out.println(f.toFormattedString(displayTimeZoneId));
+                    if (f != null) {
+                        System.out.println(f.getRawListing());
+                        System.out.println(f.toFormattedString(displayTimeZoneId));
+                    } else {
+                        System.out.println("File not found");
+                    }
                 }
                 if (mlst) {
                     FTPFile f = ftp.mlistFile(remote);
@@ -435,8 +454,7 @@ __main:
                 } else {
                     System.out.println("Failed: "+ftp.getReplyString());
                 }
-            }
-            else {
+            } else {
                 OutputStream output;
 
                 output = new FileOutputStream(local);
@@ -456,23 +474,21 @@ __main:
         } catch (IOException e) {
             error = true;
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (ftp.isConnected()) {
                 try {
                     ftp.disconnect();
-                }
-                catch (IOException f) {
+                } catch (IOException f) {
                     // do nothing
                 }
             }
         }
 
         System.exit(error ? 1 : 0);
-   }
+    } // end main
 
-   private static CopyStreamListener createListener() {
-        return new CopyStreamListener() {
+    private static CopyStreamListener createListener(){
+        return new CopyStreamListener(){
             private long megsTotal = 0;
 
             @Override
