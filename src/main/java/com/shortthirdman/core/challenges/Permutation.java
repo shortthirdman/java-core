@@ -1,3 +1,5 @@
+package com.shortthirdman.core.challenges;
+
 /**
  * @Permutation.java
  * @version 1.00 2012/12/23
@@ -5,7 +7,6 @@ Description:
 
 Prints out all permutation of a word.
  */
-package com.shortthirdman.core.challenges;
 
 import java.util.ArrayList;
 
