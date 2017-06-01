@@ -31,7 +31,7 @@ import org.apache.commons.net.util.TrustManagerUtils;
  * If the -b flag is used, a binary transfer is assumed (default is ASCII).
  * See below for further options.
  */
-public final class FTPClient {
+public final class FTPClientCLI {
 
     public static final String USAGE =
         "Expected Parameters: [options] <hostname> <username> <password> [<remote file> [<local file>]]\n" +
