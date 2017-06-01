@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>
   
   <properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<jdk.version>1.8</jdk.version>
 	<junit.version>3.8.1</junit.version>
 	<log4j.version>1.2.17</log4j.version>
@@ -25,6 +26,11 @@
 	  <groupId>log4j</groupId>
 	  <artifactId>log4j</artifactId>
 	  <version>${log4j.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.glassfish.jersey.containers</groupId>
+	  <artifactId>jersey-container-servlet</artifactId>
+	  <version>2.23.1</version>
 	</dependency>
 	<dependency>
 	  <groupId>com.google.code.gson</groupId>
@@ -52,6 +58,33 @@
       <version>20170516</version>
 	</dependency>
 	<dependency>
+	  <groupId>javax.ejb</groupId>
+	  <artifactId>javax.ejb-api</artifactId>
+	  <version>3.2</version>
+	  <scope>provided</scope>
+	</dependency>
+	<dependency>
+	  <groupId>javax.enterprise</groupId>
+	  <artifactId>cdi-api</artifactId>
+	  <version>1.2</version>
+	  <scope>provided</scope>
+	</dependency>
+	<dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate-entitymanager</artifactId>
+	  <version>4.3.0.Final</version>
+	</dependency>
+	<dependency>
+	  <groupId>javax.ws.rs</groupId>
+	  <artifactId>javax.ws.rs-api</artifactId>
+	  <version>2.0</version>
+	</dependency>
+	<dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.10.1</version>
+	</dependency>
+	<dependency>
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
       <version>1.1.1</version>
@@ -70,6 +103,46 @@
       <groupId>org.glassfish.jersey.core</groupId>
       <artifactId>jersey-server</artifactId>
       <version>2.25</version>
+	</dependency>
+	<dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.3</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.jboss.resteasy</groupId>
+	  <artifactId>resteasy-client</artifactId>
+	  <version>3.1.0.Final</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.jboss.resteasy</groupId>
+	  <artifactId>resteasy-multipart-provider</artifactId>
+	  <version>3.1.0.Final</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.jboss.resteasy</groupId>
+	  <artifactId>resteasy-jaxrs</artifactId>
+	  <version>3.1.0.Final</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.httpcomponents</groupId>
+	  <artifactId>httpmime</artifactId>
+	  <version>4.5.3</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.httpcomponents</groupId>
+	  <artifactId>httpcore</artifactId>
+	  <version>4.4.6</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.httpcomponents</groupId>
+	  <artifactId>httpclient-cache</artifactId>
+	  <version>4.5.3</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.jboss.resteasy</groupId>
+	  <artifactId>jaxrs-api</artifactId>
+	  <version>3.0.10.Final</version>
 	</dependency>
 	<dependency>
       <groupId>commons-net</groupId>
@@ -111,10 +184,66 @@
 	  <artifactId>openjpa-persistence-jdbc</artifactId>
 	  <version>2.4.2</version>
 	</dependency>
+	<dependency>
+	  <groupId>com.sun.mail</groupId>
+	  <artifactId>javax.mail</artifactId>
+	  <version>1.5.5</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.glassfish.jersey.media</groupId>
+	  <artifactId>jersey-media-json-jackson</artifactId>
+	  <version>2.23</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.glassfish.jersey.media</groupId>
+	  <artifactId>jersey-media-multipart</artifactId>
+	  <version>2.23</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.dcx.iap</groupId>
+	  <artifactId>logging</artifactId>
+	  <version>1.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.dcx.iap</groupId>
+	  <artifactId>util</artifactId>
+	  <version>1.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>commons-beanutils</groupId>
+	  <artifactId>commons-beanutils</artifactId>
+	  <version>1.9.1</version>
+	</dependency>
+	<dependency>
+	  <groupId>net.sf.jasperreports</groupId>
+	  <artifactId>jasperreports</artifactId>
+	  <version>6.2.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>net.sf.jasperreports</groupId>
+	  <artifactId>jasperreports-fonts</artifactId>
+	  <version>5.6.1</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.apache.poi</groupId>
+	  <artifactId>poi-ooxml</artifactId>
+	  <version>3.9</version>
+	</dependency>
+	<dependency>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>javax.servlet-api</artifactId>
+	  <version>3.0.1</version>
+	</dependency>
+	<dependency>
+	  <groupId>javax.servlet.jsp</groupId>
+	  <artifactId>javax.servlet.jsp-api</artifactId>
+	  <version>2.2.1</version>
+	</dependency>
   </dependencies>
   
   <build>
 	  <finalName>${project.artifactId}-${project.version}</finalName>
+	  <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 	  <plugins>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
@@ -123,6 +252,14 @@
 			<configuration>
 				<downloadSources>true</downloadSources>
 				<downloadJavadocs>false</downloadJavadocs>
+			</configuration>
+		</plugin>
+		
+		<plugin>
+			<artifactId>maven-ejb-plugin</artifactId>
+			<version>2.3</version>
+			<configuration>
+				<ejbVersion>3.1</ejbVersion>
 			</configuration>
 		</plugin>
 
@@ -135,12 +272,12 @@
 				<target>${jdk.version}</target>
 			</configuration>
 		</plugin>
-		<!--
+		
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-jar-plugin</artifactId>
 			<configuration>
-				<excludes>
+				<!--<excludes>
 					<exclude>**/log4j.properties</exclude>
 				</excludes>
 				<archive>
@@ -148,7 +285,7 @@
 						<addClasspath>true</addClasspath>
 						<mainClass>com.shortthirdman.core.App</mainClass>
 					</manifest>
-				 </archive>
+				 </archive>-->
 			</configuration>
 		</plugin>
 		-->
