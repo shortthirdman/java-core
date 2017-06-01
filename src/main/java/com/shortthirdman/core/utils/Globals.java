@@ -1,0 +1,49 @@
+package com.shortthirdman.core.utils;
+
+import java.io.IOException;
+
+public class Globals {
+
+  private static String[] browserNames = { "firefox", "mozilla-firefox",
+      "mozilla", "konqueror", "netscape", "opera" };
+
+  public static void openBrowser(String url) throws IOException {
+    final String os = System.getProperty("os.name").toLowerCase();
+    if (os.indexOf("windows") != -1) {
+      url = appendUrlForWindows2000(os, url);
+      Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+      return;
+    } else if (os.indexOf("mac") != -1) {
+      Runtime.getRuntime().exec(new String[] { "open", url });
+      return;
+    } else {
+      Runtime runtime = Runtime.getRuntime();
+      for (int i = 0; i < browserNames.length; i++) {
+        try {
+          runtime.exec(new String[] { browserNames[i], url });
+          return;
+        } catch (Exception e) {
+        }
+      }
+    }
+  }
+
+  public static void openBrowser(String url, final String browserPath) throws IOException {
+    final String os = System.getProperty("os.name").toLowerCase();
+    if (os.indexOf("windows") != -1) {
+      url = appendUrlForWindows2000(os, url);
+    }
+    Runtime.getRuntime().exec(new String[] { browserPath, url });
+  }
+
+  private static String appendUrlForWindows2000(final String os, final String url) {
+    String ret = url;
+    if (os.indexOf("2000") != -1) {
+      if (url.toLowerCase().endsWith(".html")
+          || url.toLowerCase().endsWith(".htm")) {
+        ret += "#";
+      }
+    }
+    return ret;
+  }
+}

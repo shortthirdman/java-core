@@ -10,23 +10,23 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 public class FontStyle {
    public static void main(String[] args)throws Exception {
-   //Blank Document
+   // Blank Document
    XWPFDocument document = new XWPFDocument(); 
         
-   //Write the Document in file system
+   // Write the Document in file system
    FileOutputStream out = new FileOutputStream(new File("fontstyle.docx"));
         
-   //create paragraph
+   // create paragraph
    XWPFParagraph paragraph = document.createParagraph();
         
-   //Set Bold an Italic
+   // Set Bold an Italic
    XWPFRun paragraphOneRunOne = paragraph.createRun();
    paragraphOneRunOne.setBold(true);
    paragraphOneRunOne.setItalic(true);
    paragraphOneRunOne.setText("Font Style");
    paragraphOneRunOne.addBreak();
         
-   //Set text Position
+   // Set text Position
    XWPFRun paragraphOneRunTwo = paragraph.createRun();
    paragraphOneRunTwo.setText("Font Style two");
    paragraphOneRunTwo.setTextPosition(100);
