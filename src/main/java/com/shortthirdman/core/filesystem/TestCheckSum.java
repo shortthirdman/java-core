@@ -3,6 +3,10 @@ package com.shortthirdman.core.filesystem;
 import java.io.FileInputStream;
 import java.security.MessageDigest;
 
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class TestCheckSum {
 	
   public static void main(String args[]) throws Exception { 

@@ -1,9 +1,20 @@
 package com.shortthirdman.core.filesystem;
 
+import java.io.*;
+
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class DirectoryTest implements FilenameFilter {
 	int iCount = 0;
 	public String str1 = null;
 
+	/**
+	 * @param Filter
+	 * @param FilePath
+	 * @throws Exception
+	 */
 	public void process(String Filter, String FilePath) throws Exception {
 		str1 = Filter;
 		File file = new File(FilePath);
@@ -24,6 +35,9 @@ public class DirectoryTest implements FilenameFilter {
 		// file.mkdir();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
+	 */
 	public boolean accept(File dir, String s) {
 		if(s.startsWith(str1)) {
 			return true;
@@ -35,19 +49,24 @@ public class DirectoryTest implements FilenameFilter {
 	public static void main (String args[]) throws Exception {
 		String path = "D:/Maruti/Test";
 
-		TestMaruti tm = new TestMaruti();
+		// TestMaruti tm = new TestMaruti();
 
 		File allFiles = new File(path);
 
 		String [] strFiles = allFiles.list();
 
-		for(int j=0;j<strFiles.length;j++) {
+		for(int j = 0; j < strFiles.length; j++) {
 			String flName = strFiles[j];
-			flName = flName.substring(0,flName.indexOf("."));
-			tm.process(flName,path);
+			flName = flName.substring(0, flName.indexOf("."));
+//			tm.process(flName,path);
 		}
 	}
 
+	/**
+	 * @param source
+	 * @param destination
+	 * @throws IOException
+	 */
 	public void moveFiles(File source,File destination) throws IOException {
 		InputStream in = new FileInputStream(source);
 

@@ -2,6 +2,10 @@ package com.shortthirdman.core.filesystem;
 
 import java.io.File;
 
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class DiskSpaceDetail {
     public static void main(String[] args) {	
     	File file = new File("c:");

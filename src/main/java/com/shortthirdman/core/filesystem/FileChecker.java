@@ -2,6 +2,10 @@ package com.shortthirdman.core.filesystem;
 
 import java.io.*;
 
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class FileChecker {
 
    private static final String FILE_DIR = "c:\\folder";
@@ -11,7 +15,11 @@ public class FileChecker {
 	new FileChecker().deleteFile(FILE_DIR,FILE_TEXT_EXT);
    }
 
-   public void deleteFile(String folder, String ext){
+   /**
+ * @param folder
+ * @param ext
+ */
+public void deleteFile(String folder, String ext){
 
      GenericExtFilter filter = new GenericExtFilter(ext);
      File dir = new File(folder);
@@ -31,16 +39,21 @@ public class FileChecker {
      }
    }
 
-   //inner class, generic extension filter
-   public class GenericExtFilter implements FilenameFilter {
-       private String ext;
-
-       public GenericExtFilter(String ext) {
-         this.ext = ext;
-       }
-
-       public boolean accept(File dir, String name) {
-         return (name.endsWith(ext));
-       }
-    }
+	   public class GenericExtFilter implements FilenameFilter {
+	       private String ext;
+	
+	    /**
+	     * @param ext
+	     */
+	    public GenericExtFilter(String ext) {
+	         this.ext = ext;
+	    }
+	
+	    /* (non-Javadoc)
+	     * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
+	     */
+	    public boolean accept(File dir, String name) {
+	         return (name.endsWith(ext));
+	    }
+	   }
 }

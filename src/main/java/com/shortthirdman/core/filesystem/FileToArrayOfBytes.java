@@ -3,10 +3,15 @@ package com.shortthirdman.core.filesystem;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class FileToArrayOfBytes {
     public static void main(String[] args) {
-    	FileInputStream fileInputStream=null;
+    	FileInputStream fileInputStream = null;
         
         File file = new File("C:\\testing.txt");
         
@@ -23,8 +28,8 @@ public class FileToArrayOfBytes {
 			}
 			
 			System.out.println("Done");
-        } catch(Exception e){
-        	e.printStackTrace();
+        } catch(IOException ioe) {
+        	ioe.printStackTrace();
         }
     }
 }

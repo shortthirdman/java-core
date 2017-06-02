@@ -2,8 +2,15 @@ package com.shortthirdman.core.filesystem;
 
 import java.io.*;
 
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class DirectoryGlobals {
 
+    /**
+     * @param dir
+     */
     public static void removeDirectory(File dir) {
     	if (dir.isDirectory()) {
     		File[] files = dir.listFiles();
@@ -19,6 +26,9 @@ public class DirectoryGlobals {
     	}
     }
 
+    /**
+     * @param dir
+     */
     public static void cleanDirectory(File dir) {
     	if (dir.isDirectory()) {
     		File[] files = dir.listFiles();

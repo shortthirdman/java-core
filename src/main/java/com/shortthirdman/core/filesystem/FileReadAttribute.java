@@ -1,10 +1,15 @@
 package com.shortthirdman.core.filesystem;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class FileReadAttribute {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, FileNotFoundException {
     	File file = new File("c:\\file.txt");
 
     	//mark this file as read only, since jdk 1.2

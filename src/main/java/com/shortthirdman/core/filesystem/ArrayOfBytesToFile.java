@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class ArrayOfBytesToFile {
-    public static void main( String[] args ) {
-    	FileInputStream fileInputStream=null;
+    public static void main(String[] args) {
+    	FileInputStream fileInputStream = null;
         
         File file = new File("C:\\testing.txt");
         

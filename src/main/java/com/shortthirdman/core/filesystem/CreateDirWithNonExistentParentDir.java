@@ -2,6 +2,10 @@ package com.shortthirdman.core.filesystem;
 
 import java.io.*;
  
+/**
+ * @author Swetank Mohanty (shortthirdman)
+ *
+ */
 public class CreateDirWithNonExistentParentDir {
 	public static void main(String args[]) throws IOException, FileNotFoundException {
  		File file = new File("F:\\Testing\\first\\second");
