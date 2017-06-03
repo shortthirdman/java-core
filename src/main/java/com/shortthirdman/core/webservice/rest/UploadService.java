@@ -25,7 +25,6 @@ public class UploadService {
     @Produces(MediaType.TEXT_PLAIN)
     public String uploadFile(@FormDataParam("file") InputStream fis,
                     @FormDataParam("file") FormDataContentDisposition fdcd) {
-  
         OutputStream outpuStream = null;
         String fileName = fdcd.getFileName();
         System.out.println("File Name: " + fdcd.getFileName());
