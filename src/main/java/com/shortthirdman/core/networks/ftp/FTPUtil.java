@@ -1,6 +1,14 @@
 package com.shortthirdman.core.networks.ftp;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.BufferedOutputStream;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
+import java.io.*;
+
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPClient;
 
 public class FTPUtil {
     
@@ -65,11 +73,9 @@ public class FTPUtil {
                     filePath = parentDir + "/" + currentFileName;
                 }
     
-                String newDirPath = saveDir + parentDir + File.separator
-                        + currentDir + File.separator + currentFileName;
+                String newDirPath = saveDir + parentDir + File.separator + currentDir + File.separator + currentFileName;
                 if (currentDir.equals("")) {
-                    newDirPath = saveDir + parentDir + File.separator
-                            + currentFileName;
+                    newDirPath = saveDir + parentDir + File.separator + currentFileName;
                 }
     
                 if (aFile.isDirectory()) {
@@ -109,8 +115,7 @@ public class FTPUtil {
         if (subFiles != null && subFiles.length > 0) {
             for (FTPFile aFile : subFiles) {
                 String currentFileName = aFile.getName();
-                if (currentFileName.equals(".")
-                        || currentFileName.equals("..")) {
+                if (currentFileName.equals(".") || currentFileName.equals("..")) {
                     // skip parent directory and directory itself
                     continue;
                 }
@@ -153,8 +158,7 @@ public class FTPUtil {
 		File[] subFiles = localDir.listFiles();
 		if (subFiles != null && subFiles.length > 0) {
 			for (File item : subFiles) {
-				String remoteFilePath = remoteDirPath + "/" + remoteParentDir
-						+ "/" + item.getName();
+				String remoteFilePath = remoteDirPath + "/" + remoteParentDir + "/" + item.getName();
 				if (remoteParentDir.equals("")) {
 					remoteFilePath = remoteDirPath + "/" + item.getName();
 				}
@@ -177,11 +181,9 @@ public class FTPUtil {
 					// create directory on the server
 					boolean created = ftpClient.makeDirectory(remoteFilePath);
 					if (created) {
-						System.out.println("CREATED the directory: "
-								+ remoteFilePath);
+						System.out.println("CREATED the directory: " + remoteFilePath);
 					} else {
-						System.out.println("COULD NOT create the directory: "
-								+ remoteFilePath);
+						System.out.println("COULD NOT create the directory: " + remoteFilePath);
 					}
 
 					// upload the sub directory
