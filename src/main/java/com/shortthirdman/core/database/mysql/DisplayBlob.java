@@ -29,7 +29,7 @@ public class DisplayBlob extends HttpServlet {
      * @throws IOException
      * @throws ServletException
      */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException,ServletException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	Blob image = null;
     	Connection con = null;
     	Statement stmt = null;

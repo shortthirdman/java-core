@@ -1,7 +1,7 @@
 /**
  * This class is used to
  */
-package com.shortthirdman.core.utils;
+package com.shortthirdman.core.common;
 
 /**
  * @author Swetank Mohanty
